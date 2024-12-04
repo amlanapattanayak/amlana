@@ -11,6 +11,50 @@ start a web server.
 Make sure to run the migrations and seeders and update the configuration if you
 would like to run this application with a MySQL database.
 
+#### - Candidate - Amlana - Assignment - Installation - Steps
+A. Step to pull the code and create database
+Step 1:
+cd <project location>
+
+Step 2:
+git clone https://github.com/amlanapattanayak/ascendeum-monetization.git ./
+
+Step 3:
+Create MySQL database "ascendeum-monetization"
+
+Step 4: 
+Change the credentials in .env around line #22
+
+B. Step to setup the Laravel assignment project
+Step 1:
+Run the following command
+composer install
+
+Step 2: 
+php artisan key:generate
+
+Step 3:
+php artisan cache:clear
+
+Step 4:
+php artisan migrate
+
+Step 5:
+To import CSV for Campaign Monetisation Event conent, use the following command 
+php artisan app:import-stats storage/stats_2024_03_31.csv
+
+Step 5:
+php artisan serve
+
+Open the URL 
+http://127.0.0.1:8000/campaigns/revenue
+
+Following new routes are created
+
+Route::get('/campaigns/revenue', [MonetizationEventController::class, 'showAggregatedRevenue']);
+Route::get('/campaigns/revenue/{campaign}', [MonetizationEventController::class, 'showAggregatedRevenueByTime']);
+Route::get('/campaigns/revenue/{campaign}/{datetime}', [MonetizationEventController::class, 'showAggregatedRevenueByTimeTerm']);
+
 ## Assignment
 
 In the `storage/` folder you will find two files: _stats_2024_03_31.csv_ and
